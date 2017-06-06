@@ -5,7 +5,7 @@
   "main": "source/index.js",
   "scripts": {
     "lint": "eslint source",
-    "test": "babel-node source/index.test.js",
+    "test": "babel-node source/*.test.js",
     "watch": "watch 'clear && npm run -s lint && npm run -s test' source"
   },
   "repository": {
