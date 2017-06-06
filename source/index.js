@@ -1,15 +1,22 @@
+const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
+
 export const flying = o => {
   let isFlying = false;
-  const instance = Object.assign({}, o, {
-    fly: () => {
+  return Object.assign({}, o, {
+    fly () {
       isFlying = true;
-      return instance;
+      return this;
     },
-    land: () => {
+    land () {
       isFlying = false;
-      return instance;
+      return this;
     },
     isFlying: () => isFlying,
   });
-  return instance;
 };
+
+const quacking = quack => o => Object.assign({}, o, {
+  quack: () => quack
+});
+
+export const createDuck = quack => pipe(flying, quacking(quack))({});
