@@ -54,4 +54,13 @@ test('loop', assert => {
   assert.end();
 });
 
+test('loop', assert => {
+  const msg = 'should loop over range.';
 
+  const loopGen = grange(3, 1, {loop: true});
+  const actual = range(0, 7).map(() => loopGen.next().value);
+  const expected = [3, 2, 1, 3, 2, 1, 3, 2];
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
